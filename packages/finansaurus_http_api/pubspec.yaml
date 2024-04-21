@@ -1,0 +1,22 @@
+name: finansaurus_http_api
+description: The Flutter implementation of the FinansaurusApi that uses http.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  meta: ^1.7.0
+  finansaurus_api:
+    path: ../finansaurus_api
+  authenticated_http_client:
+    path: ../authenticated_http_client
+  rxdart: ^0.27.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.0

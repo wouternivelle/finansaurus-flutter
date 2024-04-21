@@ -1,0 +1,42 @@
+name: finansaurus_flutter
+description: A Flutter UI for the Finansaurus project.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  authentication_repository:
+    path: packages/authentication_repository
+  finansaurus_repository:
+    path: packages/finansaurus_repository
+  finansaurus_api:
+    path: packages/finansaurus_api
+  finansaurus_http_api:
+    path: packages/finansaurus_http_api
+  bloc: ^8.1.0
+  equatable: ^2.0.3
+  firebase_core: ^2.23.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.1
+  font_awesome_flutter: ^10.1.0
+  google_fonts: ^4.0.0
+  meta: ^1.7.0
+
+dev_dependencies:
+  bloc_test: ^9.0.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+dependency_overrides:
+  bloc: ^8.1.0
+  bloc_test: ^9.1.0
+  flutter_bloc: ^8.1.1

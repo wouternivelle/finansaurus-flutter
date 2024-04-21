@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386733164208",
+    "project_id": "finansaurus-dev-5f599",
+    "storage_bucket": "finansaurus-dev-5f599.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386733164208:android:40533c312e40ffd4021d75",
+        "android_client_info": {
+          "package_name": "io.nivelle.flutter.finansaurus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386733164208-9kk8ajflcppvauc5c7816o7vuor6a5uf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPiSanva2Q6_NW1DaKjjge5Vn4ZkMBlsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386733164208-9kk8ajflcppvauc5c7816o7vuor6a5uf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
