@@ -96,7 +96,7 @@ class EditAccountView extends StatelessWidget {
         height: paddingHeight,
       )
     ];
-    if (!isNew) {
+    if (isNew) {
       fields.addAll([
         _AmountField(),
         SizedBox(
@@ -187,7 +187,7 @@ class _AmountField extends StatelessWidget {
         FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}')),
       ],
       onChanged: (value) {
-        context.read<EditAccountBloc>().add(EditAccountNameChanged(value));
+        context.read<EditAccountBloc>().add(EditAccountAmountChanged(double.parse(value)));
       },
     );
   }
