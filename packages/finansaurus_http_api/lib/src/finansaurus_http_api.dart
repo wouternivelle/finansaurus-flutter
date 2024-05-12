@@ -13,7 +13,7 @@ class FinansaurusHttpApi extends FinansaurusApi {
     final response =
         await AuthenticatedHttpClient().delete('${baseUrl}/accounts/${id}');
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 204) {
       throw new AccountException();
     }
   }
@@ -83,7 +83,7 @@ class FinansaurusHttpApi extends FinansaurusApi {
     final response =
         await AuthenticatedHttpClient().delete('${baseUrl}/categories/${id}');
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 204) {
       throw new CategoryException();
     }
   }
