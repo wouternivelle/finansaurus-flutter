@@ -85,6 +85,9 @@ class ListCategoriesView extends StatelessWidget {
                         context
                             .read<ListCategoriesBloc>()
                             .add(CategoryDeleted(category));
+                        context
+                            .read<ListCategoriesBloc>()
+                            .add(ListCategoriesSubscriptionRequested());
                       },
                       onTap: () async {
                         await Navigator.of(context).push(

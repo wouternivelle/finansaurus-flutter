@@ -1,4 +1,3 @@
-import 'package:finansaurus_flutter/payees/edit/bloc/edit_payee_bloc.dart';
 import 'package:finansaurus_flutter/payees/edit/view/edit_payee_page.dart';
 import 'package:finansaurus_flutter/payees/list/bloc/list_payees_bloc.dart';
 import 'package:finansaurus_flutter/payees/list/view/list_payees_tile.dart';
@@ -78,6 +77,9 @@ class ListPayeesView extends StatelessWidget {
                       payee: payee,
                       onDismissed: (_) {
                         context.read<ListPayeesBloc>().add(PayeeDeleted(payee));
+                        context
+                            .read<ListPayeesBloc>()
+                            .add(ListPayeesSubscriptionRequested());
                       },
                       onTap: () async {
                         await Navigator.of(context).push(

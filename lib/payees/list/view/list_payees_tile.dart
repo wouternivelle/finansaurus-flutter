@@ -18,7 +18,7 @@ class ListPayeesTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-        key: Key('todoListTile_dismissible_${payee.id}'),
+        key: UniqueKey(),
         onDismissed: onDismissed,
         direction: DismissDirection.endToStart,
         background: Container(

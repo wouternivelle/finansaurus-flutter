@@ -19,7 +19,7 @@ class ListAccountsTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-        key: Key('accountListTile_dismissible_${account.id}'),
+        key: UniqueKey(),
         onDismissed: onDismissed,
         direction: DismissDirection.endToStart,
         background: Container(

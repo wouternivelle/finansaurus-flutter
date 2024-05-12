@@ -46,9 +46,9 @@ class FinansaurusHttpApi extends FinansaurusApi {
   @override
   Future<void> deleteAccount(int id) async {
     final response =
-        await AuthenticatedHttpClient().delete('${baseUrl}/payees/${id}');
+        await AuthenticatedHttpClient().delete('${baseUrl}/accounts/${id}');
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 204) {
       throw new AccountException();
     }
   }

@@ -18,7 +18,7 @@ class ListCategoriesTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-        key: Key('listCategories_dismissible_${category.id}'),
+        key: UniqueKey(),
         onDismissed: onDismissed,
         direction: DismissDirection.endToStart,
         background: Container(

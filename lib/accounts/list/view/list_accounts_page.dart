@@ -1,7 +1,6 @@
 import 'package:finansaurus_flutter/accounts/edit/view/edit_account_page.dart';
 import 'package:finansaurus_flutter/accounts/list/bloc/list_accounts_bloc.dart';
 import 'package:finansaurus_flutter/accounts/list/view/list_accounts_tile.dart';
-import 'package:finansaurus_flutter/payees/edit/view/edit_payee_page.dart';
 import 'package:finansaurus_repository/finansaurus_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +28,10 @@ class ListAccountsView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         key: const Key('listAccountsView_addAccount_floatingActionButton'),
-        onPressed: () => Navigator.of(context).push(EditPayeePage.route()),
+        onPressed: () async {
+          await Navigator.of(context).push(EditAccountPage.route());
+          context.read<ListAccountsBloc>().add(ListAccountsRequested());
+        },
         child: const Icon(Icons.add),
       ),
       body: MultiBlocListener(
@@ -77,6 +79,9 @@ class ListAccountsView extends StatelessWidget {
                         context
                             .read<ListAccountsBloc>()
                             .add(AccountDeleted(account));
+                        context
+                            .read<ListAccountsBloc>()
+                            .add(ListAccountsRequested());
                       },
                       onTap: () async {
                         await Navigator.of(context).push(
