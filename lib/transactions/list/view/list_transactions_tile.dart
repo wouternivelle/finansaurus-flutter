@@ -19,7 +19,7 @@ class ListTransactionsTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Dismissible(
-        key: Key('listTransactionsTile_dismissible_${transaction.id}'),
+        key: UniqueKey(),
         onDismissed: onDismissed,
         direction: DismissDirection.endToStart,
         background: Container(

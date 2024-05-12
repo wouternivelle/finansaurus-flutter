@@ -25,7 +25,7 @@ class Transaction extends Equatable {
   final TransactionType type;
   final int accountId;
   final int categoryId;
-  final int payeeId;
+  final int? payeeId;
   final DateTime date;
   final String? note;
 

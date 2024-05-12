@@ -76,6 +76,7 @@ class ListTransactionsView extends StatelessWidget {
                         context
                             .read<ListTransactionsBloc>()
                             .add(TransactionDeleted(transaction));
+                        context.read<ListTransactionsBloc>().add(ListTransactionsSubscriptionRequested());
                       },
                       onTap: () async {
                         //await Navigator.of(context).push(

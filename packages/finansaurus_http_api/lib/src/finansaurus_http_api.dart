@@ -139,7 +139,7 @@ class FinansaurusHttpApi extends FinansaurusApi {
     final response =
         await AuthenticatedHttpClient().delete('${baseUrl}/transactions/${id}');
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 204) {
       throw new TransactionException();
     }
   }
@@ -147,7 +147,7 @@ class FinansaurusHttpApi extends FinansaurusApi {
   @override
   Future<List<Transaction>> getTransactions(int page, int size) async {
     final response = await AuthenticatedHttpClient()
-        .get('${baseUrl}/transactions?page=$page&size=$size');
+        .get('${baseUrl}/transactions?page=$page&size=$size&sort=date,desc');
     final responseAsJson = jsonDecode(response.body) as Map<String, dynamic>;
     final transactions =
         responseAsJson['_embedded']['transactions'] as List<dynamic>;
