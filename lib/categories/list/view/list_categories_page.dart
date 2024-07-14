@@ -36,7 +36,7 @@ class ListCategoriesView extends StatelessWidget {
           );
           context
               .read<ListCategoriesBloc>()
-              .add(ListCategoriesSubscriptionRequested());
+              .add(const ListCategoriesSubscriptionRequested());
         },
         child: const Icon(Icons.add),
       ),
@@ -50,7 +50,7 @@ class ListCategoriesView extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Failed to list the categories'),
                     ),
                   );
@@ -87,7 +87,7 @@ class ListCategoriesView extends StatelessWidget {
                             .add(CategoryDeleted(category));
                         context
                             .read<ListCategoriesBloc>()
-                            .add(ListCategoriesSubscriptionRequested());
+                            .add(const ListCategoriesSubscriptionRequested());
                       },
                       onTap: () async {
                         await Navigator.of(context).push(
@@ -96,7 +96,7 @@ class ListCategoriesView extends StatelessWidget {
                         );
                         context
                             .read<ListCategoriesBloc>()
-                            .add(ListCategoriesSubscriptionRequested());
+                            .add(const ListCategoriesSubscriptionRequested());
                       },
                     ),
                 ],
@@ -111,10 +111,10 @@ class ListCategoriesView extends StatelessWidget {
   List<Category> _orderCategories(List<Category> categories) {
     final List<Category> result = [];
     final parents = categories.where((category) => category.parent == null).toList();
-    parents.forEach((parent) {
+    for (var parent in parents) {
       result.add(parent);
       result.addAll(categories.where((category) => category.parent == parent.id).toList());
-    });
+    }
     return result;
   }
 }
