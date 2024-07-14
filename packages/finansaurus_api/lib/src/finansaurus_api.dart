@@ -1,6 +1,4 @@
 import 'package:finansaurus_api/finansaurus_api.dart';
-import 'package:finansaurus_api/src/models/category.dart';
-import 'package:finansaurus_api/src/models/transaction.dart';
 
 abstract class FinansaurusApi {
   const FinansaurusApi();

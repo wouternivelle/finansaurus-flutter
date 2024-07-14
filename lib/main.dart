@@ -19,7 +19,7 @@ Future<void> main() async {
   await authenticationRepository.user.first;
 
   final finansaurusRepository =
-      FinansaurusRepository(finansaurusApi: new FinansaurusHttpApi(baseUrl: const String.fromEnvironment('FINANSAURUS_BASE_URL')));
+      FinansaurusRepository(finansaurusApi: FinansaurusHttpApi(baseUrl: const String.fromEnvironment('FINANSAURUS_BASE_URL')));
 
   runApp(App(
     authenticationRepository: authenticationRepository,
