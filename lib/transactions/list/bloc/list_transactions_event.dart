@@ -20,3 +20,8 @@ final class TransactionDeleted extends ListTransactionsEvent {
   @override
   List<Object> get props => [transaction];
 }
+
+final class TransactionsNeeded extends ListTransactionsEvent {
+  @override
+  List<Object> get props => [];
+}

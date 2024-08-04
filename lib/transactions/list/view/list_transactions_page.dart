@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:finansaurus_flutter/transactions/list/bloc/list_transactions_bloc.dart';
 import 'package:finansaurus_flutter/transactions/list/view/list_transactions_tile.dart';
+import 'package:finansaurus_flutter/widget/bottom_loader.dart';
 import 'package:finansaurus_repository/finansaurus_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,8 +21,21 @@ class ListTransactionsPage extends StatelessWidget {
   }
 }
 
-class ListTransactionsView extends StatelessWidget {
+class ListTransactionsView extends StatefulWidget {
   const ListTransactionsView({super.key});
+
+  @override
+  State<ListTransactionsView> createState() => _ListTransactionsState();
+}
+
+class _ListTransactionsState extends State<ListTransactionsView> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +57,7 @@ class ListTransactionsView extends StatelessWidget {
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Failed to list the categories'),
                     ),
                   );
@@ -66,31 +82,59 @@ class ListTransactionsView extends StatelessWidget {
               }
             }
 
-            return Scrollbar(
-              child: ListView(
-                children: [
-                  for (final transaction in state.transactions)
-                    ListTransactionsTile(
-                      transaction: transaction,
-                      onDismissed: (_) {
-                        context
-                            .read<ListTransactionsBloc>()
-                            .add(TransactionDeleted(transaction));
-                        context.read<ListTransactionsBloc>().add(ListTransactionsSubscriptionRequested());
-                      },
-                      onTap: () async {
-                        //await Navigator.of(context).push(
-                        //EditPayeePage.route(initialPayee: category),
-                        //);
-                        //context.read<ListPayeesBloc>().add(ListPayeesSubscriptionRequested());
-                      },
-                    ),
-                ],
-              ),
+            log('TRANSACTION LENGTH IS ${state.transactions.length}');
+
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return index >= state.transactions.length
+                    ? const BottomLoader()
+                    : ListTransactionsTile(
+                        transaction: state.transactions[index],
+                        categories: state.categories,
+                        payees: state.payees,
+                        onDismissed: (_) {
+                          context.read<ListTransactionsBloc>().add(
+                              TransactionDeleted(state.transactions[index]));
+                          context.read<ListTransactionsBloc>().add(
+                              const ListTransactionsSubscriptionRequested());
+                        },
+                        onTap: () async {
+                          //await Navigator.of(context).push(
+                          //EditPayeePage.route(initialPayee: category),
+                          //);
+                          //context.read<ListPayeesBloc>().add(ListPayeesSubscriptionRequested());
+                        },
+                      );
+              },
+              itemCount: state.hasReachedMax
+                  ? state.transactions.length
+                  : state.transactions.length + 1,
+              controller: _scrollController,
             );
           },
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) {
+      context.read<ListTransactionsBloc>().add(TransactionsNeeded());
+    }
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
   }
 }

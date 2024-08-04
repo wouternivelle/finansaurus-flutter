@@ -23,7 +23,7 @@ abstract class FinansaurusApi {
 
   Future<void> deleteCategory(int id);
 
-  Future<List<Transaction>> getTransactions(int page, int size);
+  Future<TransactionPage> getTransactions(int page, int size);
 
   Future<void> saveTransaction(Transaction transaction);
 

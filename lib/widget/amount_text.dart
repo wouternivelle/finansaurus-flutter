@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AmountText extends StatelessWidget {
   const AmountText({
+    super.key,
     required this.amount,
   });
 
@@ -10,7 +11,7 @@ class AmountText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '€ ' + amount.toString(),
+      '€ $amount',
       style: TextStyle(color: amount < 0 ? Colors.red : Colors.green),
       maxLines: 1,
       overflow: TextOverflow.ellipsis,

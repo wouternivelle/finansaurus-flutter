@@ -41,7 +41,7 @@ class FinansaurusRepository {
   /**
    * TRANSACTIONS
    */
-  Future<List<Transaction>> getTransactions(int page, int size) =>
+  Future<TransactionPage> getTransactions(int page, int size) =>
       _finansaurusApi.getTransactions(page, size);
 
   Future<void> saveTransaction(Transaction transaction) =>
